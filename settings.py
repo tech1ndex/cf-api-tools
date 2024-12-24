@@ -1,6 +1,6 @@
 from pydantic_settings import BaseSettings
 from pydantic.types import SecretStr
-import requests
+
 
 class Settings(BaseSettings):
     token: SecretStr
