@@ -20,7 +20,7 @@ def update_ip_cf_waf_rule(cf_api_url, token, zone_id, ruleset, rule_id, descript
     api_url = f"{cf_api_url}/zones/{zone_id}/rulesets/{ruleset}/rules/{rule_id}"
     request_headers={"Authorization": f"Bearer {token}" ,"Content-Type":"application/json"}
     data = {"action": "block", "description": f"{description}",
-            "expression": f"{new_ip}"}
+            "expression": f"{expression}"}
 
     return requests.patch(api_url, headers=request_headers, data=json.dumps(data)).json()
 
@@ -45,6 +45,7 @@ for x in rules['result']['rules']:
                         description=x['description'],
                         expression=new_ip)
         logger.info(f"IP Address for Rule: {x['description']} updated from {ip[0]} to {my_ip}")
-
+    except IndexError as e:
+        logger.error(f"Rule does not contain IP: {x['description']}")
     except Exception as e:
         logger.error(f"Error updating IP Address for Rule: {x['description']}, {e}")
