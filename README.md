@@ -9,7 +9,7 @@ A simple tool to automatically update a whitelisted IP Address in Cloudflare. Wr
 A Dockerfile has been provided, there is also a pre-built image available here:
 
 ```
-docker pull ghcr.io/tech1ndex/cf-waf-ip-update:v0.0.1-amd64
+docker pull ghcr.io/tech1ndex/cf-waf-ip-update:latest
 ```
 
 Environment Variables required are as follows:
